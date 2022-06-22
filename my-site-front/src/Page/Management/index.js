@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
+import ListContent from "../../Component/ListContent";
 import {
   Add,
   AddList,
@@ -48,7 +49,11 @@ const Board = () => {
       <NavBoard></NavBoard>
       <ContainerBoard>
         {lists.map((e, i) => {
-          return <ListWrapper key={i}>{e.title}</ListWrapper>;
+          return (
+            <ListWrapper key={i}>
+              <ListContent></ListContent>
+            </ListWrapper>
+          );
         })}
         {open ? (
           <AddTitle>

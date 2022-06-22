@@ -17,9 +17,12 @@ export const ContainerBoard = styled.div`
 `;
 
 export const ListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 300px;
   min-width: 300px;
-  height: 70px;
+  height: fit-content;
+  min-height:50px;
   max-height: 100%;
   background-color: white;
   margin-right: 5px;
