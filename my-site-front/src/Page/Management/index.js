@@ -14,14 +14,25 @@ import {
   SpanStyle,
   TextTitle,
 } from "./style";
+import { addCard } from "../../Redux/Lists/listSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
 
 const Board = () => {
-  const [lists, setLists] = useState([]);
+  const unique_id = uuid();
+  const id_ = unique_id.slice(0, 4);
+  // const [lists, setLists] = useState([]);
   const [listContent, setListContent] = useState({
-    title: "",
     id: 0,
+    title: "",
+    cards: { id: 8 },
   });
   const [open, setOpen] = useState(false);
+
+  const list = useSelector((state) => state.Lists);
+  const dispatch = useDispatch();
+
+  console.log(list, "here is the lest");
 
   const handleOpen = () => {
     setOpen(!open);
@@ -29,26 +40,17 @@ const Board = () => {
 
   const handleChange = (e) => {
     setListContent({
+      id: id_,
       title: e.target.value,
-      id: Math.floor(10 * Math.random()),
+      cards: {},
     });
-  };
-
-  const addToLists = () => {
-    if (listContent.title !== "") {
-      setLists((prev) => [...prev, listContent]);
-      setListContent({
-        title: "",
-        id: 0,
-      });
-    }
   };
 
   return (
     <>
       <NavBoard></NavBoard>
       <ContainerBoard>
-        {lists.map((e, i) => {
+        {list.map((e, i) => {
           return (
             <ListWrapper key={i}>
               <ListContent></ListContent>
@@ -63,7 +65,18 @@ const Board = () => {
               value={listContent.title}
             />
             <Cont>
-              <Add onClick={addToLists}>Add</Add>
+              <Add
+                onClick={() => {
+                  dispatch(addCard(listContent));
+                  setListContent({
+                    id: 0,
+                    title: "",
+                    cards: {},
+                  });
+                }}
+              >
+                Add
+              </Add>
               <AiOutlineClose onClick={handleOpen} style={CloseIco} />
             </Cont>
           </AddTitle>
