@@ -5,8 +5,9 @@ export const listSlice = createSlice({
   initialState: [],
   reducers: {
     addCard: (state, action) => {
-      console.log(action.payload);
-      state.push(action.payload);
+      if (action.payload.title !== "") {
+        state.push(action.payload);
+      }
     },
 
     deleteCard: (state, action) => {

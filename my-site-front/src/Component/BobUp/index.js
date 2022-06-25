@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Wrapper } from "./style";
+import React, { useRef, useState } from "react";
+import { Background, Wrapper } from "./style";
 
-const PopUp = ({ open }) => {
+const PopUp = ({ open, setOpenPopUp }) => {
   const [list, setList] = useState(["hello", "name", "age", "sex"]);
 
   return (
     <>
       {open && (
-        <Wrapper>
+        <Wrapper onMouseLeave={() => setOpenPopUp(false)}>
           {list.map((e, i) => {
             return <h5 key={i}>{e}</h5>;
           })}

@@ -35,11 +35,10 @@ const ListContent = () => {
         <Btn>
           <BiDotsHorizontalRounded
             style={icons}
-            onMouseEnter={() => setOpenPopUp(true)}
-            onMouseLeave={() => setOpenPopUp(false)}
+            onClick={() => setOpenPopUp(true)}
           />
         </Btn>
-        <PopUp open={openPopUp}></PopUp>
+        <PopUp open={openPopUp} setOpenPopUp={setOpenPopUp}></PopUp>
       </Container>
       <Cards
         onMouseEnter={() => setPen(true)}
