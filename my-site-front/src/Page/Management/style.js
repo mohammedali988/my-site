@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from "./board-img.jpg";
+import img from "./cover.jpg";
 
 export const NavBoard = styled.div`
   width: 100%;
@@ -14,6 +14,7 @@ export const ContainerBoard = styled.div`
   background-repeat: no-repeat, repeat;
   background-size: cover;
   padding: 10px;
+  overflow: auto;
 `;
 
 export const ListWrapper = styled.div`
@@ -22,7 +23,7 @@ export const ListWrapper = styled.div`
   width: 300px;
   min-width: 300px;
   height: fit-content;
-  min-height:50px;
+  min-height: 50px;
   max-height: 100%;
   background-color: white;
   margin-right: 5px;
@@ -36,6 +37,7 @@ export const AddList = styled.button`
   justify-content: flex-start;
   padding: 13px;
   width: 300px;
+  min-width: 300px;
   height: 45px;
   background-color: white;
   border-radius: 8px;
@@ -60,7 +62,8 @@ export const iconStyle = { fontSize: "18px" };
 export const AddTitle = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  min-width: 300px;
+  =width: 300px;
   height: 70px;
   background-color: white;
   border-radius: 8px;

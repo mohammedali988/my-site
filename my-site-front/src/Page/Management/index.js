@@ -21,7 +21,6 @@ import { v4 as uuid } from "uuid";
 const Board = () => {
   const unique_id = uuid();
   const id_ = unique_id.slice(0, 4);
-  // const [lists, setLists] = useState([]);
   const [listContent, setListContent] = useState({
     id: 0,
     title: "",
@@ -32,8 +31,6 @@ const Board = () => {
   const list = useSelector((state) => state.Lists);
   const dispatch = useDispatch();
 
-  console.log(list, "here is the lest");
-
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -42,7 +39,9 @@ const Board = () => {
     setListContent({
       id: id_,
       title: e.target.value,
-      cards: {},
+      cards: {
+        title: "soo o",
+      },
     });
   };
 
@@ -53,7 +52,7 @@ const Board = () => {
         {list.map((e, i) => {
           return (
             <ListWrapper key={i}>
-              <ListContent></ListContent>
+              <ListContent list={e} />
             </ListWrapper>
           );
         })}

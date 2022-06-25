@@ -21,7 +21,7 @@ import { HiOutlineTemplate } from "react-icons/hi";
 import Modal from "../Modal";
 import PopUp from "../BobUp";
 
-const ListContent = () => {
+const ListContent = ({ list }) => {
   const [pen, setPen] = useState(false);
   const [newCard, setNewCard] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -31,7 +31,7 @@ const ListContent = () => {
     <>
       <Modal open={openModal} setOpen={setOpenModal}></Modal>
       <Container>
-        <Title>Hello</Title>
+        <Title>{list.title}</Title>
         <Btn>
           <BiDotsHorizontalRounded
             style={icons}
@@ -40,14 +40,16 @@ const ListContent = () => {
         </Btn>
         <PopUp open={openPopUp} setOpenPopUp={setOpenPopUp}></PopUp>
       </Container>
-      <Cards
-        onMouseEnter={() => setPen(true)}
-        onMouseLeave={() => setPen(false)}
-        onClick={() => setOpenModal(true)}
-      >
-        <Title>hi</Title>
-        {pen && <BsFillPencilFill style={penStyle} />}
-      </Cards>
+      {Object.keys(list.cards).length ? (
+        <Cards
+          onMouseEnter={() => setPen(true)}
+          onMouseLeave={() => setPen(false)}
+          onClick={() => setOpenModal(true)}
+        >
+          <Title>{list.cards.title}</Title>
+          {pen && <BsFillPencilFill style={penStyle} />}
+        </Cards>
+      ) : null}
       {newCard ? (
         <>
           <CardsDetail>
