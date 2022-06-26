@@ -18,14 +18,44 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { BsFillPencilFill } from "react-icons/bs";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import { HiOutlineTemplate } from "react-icons/hi";
+import { useSelector, useDispatch } from "react-redux";
 import Modal from "../Modal";
 import PopUp from "../BobUp";
+import { addCard } from "../../Redux/Lists/cardSlice";
+import { v4 as uuid } from "uuid";
 
 const ListContent = ({ list }) => {
   const [pen, setPen] = useState(false);
   const [newCard, setNewCard] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [card, setCard] = useState({
+    title: "",
+  });
+
+  const unique_id = uuid();
+  const id_ = unique_id.slice(0, 4);
+  const dispatch = useDispatch();
+  const cards = useSelector((state) => state.Cards);
+
+  const handleAddCardChange = (e, id) => {
+    const cardObj = {
+      id: id,
+      details: {
+        id: id_,
+        title: e.target.value,
+        description: "",
+        comment: "",
+      },
+    };
+    console.log(e.target.value);
+    if (e.target.value !== "") {
+      setCard(cardObj);
+    }
+  };
+
+  console.log(cards, "here is the cards");
+  console.log(cards[0], "title");
 
   return (
     <>
@@ -40,22 +70,38 @@ const ListContent = ({ list }) => {
         </Btn>
         <PopUp open={openPopUp} setOpenPopUp={setOpenPopUp}></PopUp>
       </Container>
-      {Object.keys(list.cards).length ? (
-        <Cards
-          onMouseEnter={() => setPen(true)}
-          onMouseLeave={() => setPen(false)}
-          onClick={() => setOpenModal(true)}
-        >
-          <Title>{list.cards.title}</Title>
-          {pen && <BsFillPencilFill style={penStyle} />}
-        </Cards>
+      {Object.keys(cards).length ? (
+        <>
+          {cards.map((e, i) => (
+            <Cards
+              key={i}
+              onMouseEnter={() => setPen(true)}
+              onMouseLeave={() => setPen(false)}
+              onClick={() => setOpenModal(true)}
+            >
+              <Title>{e.details.title}</Title>
+              {pen && <BsFillPencilFill style={penStyle} />}
+            </Cards>
+          ))}
+        </>
       ) : null}
       {newCard ? (
         <>
           <CardsDetail>
-            <AddText rows={4}></AddText>
+            <AddText
+              rows={4}
+              value={card.title}
+              onChange={(e) => handleAddCardChange(e, list.id)}
+            ></AddText>
             <CardAction>
-              <Add>Add </Add>
+              <Add
+                onClick={() => {
+                  dispatch(addCard(card));
+                  setCard({ title: "" });
+                }}
+              >
+                Add{" "}
+              </Add>
               <AiOutlineClose
                 style={closed}
                 onClick={() => setNewCard(false)}

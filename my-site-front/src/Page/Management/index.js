@@ -14,7 +14,7 @@ import {
   SpanStyle,
   TextTitle,
 } from "./style";
-import { addCard } from "../../Redux/Lists/listSlice";
+import { addList } from "../../Redux/Lists/listSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 
@@ -27,6 +27,7 @@ const Board = () => {
     cards: { id: 8 },
   });
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
 
   const list = useSelector((state) => state.Lists);
   const dispatch = useDispatch();
@@ -39,9 +40,7 @@ const Board = () => {
     setListContent({
       id: id_,
       title: e.target.value,
-      cards: {
-        title: "soo o",
-      },
+      cards: {},
     });
   };
 
@@ -52,7 +51,7 @@ const Board = () => {
         {list.map((e, i) => {
           return (
             <ListWrapper key={i}>
-              <ListContent list={e} />
+              <ListContent list={e} onClick={() => setId(i)} />
             </ListWrapper>
           );
         })}
@@ -66,7 +65,7 @@ const Board = () => {
             <Cont>
               <Add
                 onClick={() => {
-                  dispatch(addCard(listContent));
+                  dispatch(addList(listContent));
                   setListContent({
                     id: 0,
                     title: "",

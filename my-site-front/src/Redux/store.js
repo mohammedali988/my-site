@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import listReducer from "./Lists/listSlice";
+import cardReducer from "./Lists/cardSlice";
 
 export default configureStore({
   reducer: {
-    Lists : listReducer,
+    Lists: listReducer,
+    Cards: cardReducer,
   },
 });
