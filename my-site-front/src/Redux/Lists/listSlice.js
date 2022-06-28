@@ -8,7 +8,6 @@ export const listSlice = createSlice({
       if (action.payload.title !== "") {
         state.push(action.payload);
       }
-      console.log(state[0], "here is the state");
     },
 
     deleteList: (state, action) => {
