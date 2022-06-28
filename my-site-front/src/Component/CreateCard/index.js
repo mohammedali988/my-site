@@ -13,9 +13,11 @@ import {
 } from "../ListContent/style";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
 import { HiOutlineTemplate } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "../../Redux/Lists/cardSlice";
+
 import { v4 as uuid } from "uuid";
+import { newCard } from "../../Redux/Lists/createCardSlice";
 
 const Card = ({ list }) => {
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const Card = ({ list }) => {
   const [card, setCard] = useState({
     title: "",
   });
-  const [newCard, setNewCard] = useState(false);
+  const openCard = useSelector((state) => state.Card);
 
   const unique_id = uuid();
   const id_ = unique_id.slice(0, 4);
@@ -52,7 +54,7 @@ const Card = ({ list }) => {
 
   return (
     <>
-      {newCard ? (
+      {openCard ? (
         <>
           <form onSubmit={handleSubmit}>
             <CardsDetail>
@@ -65,7 +67,7 @@ const Card = ({ list }) => {
                 <Add type="submit"> Add </Add>
                 <AiOutlineClose
                   style={closed}
-                  onClick={() => setNewCard(false)}
+                  onClick={() => dispatch(newCard())}
                 />
               </CardAction>
             </CardsDetail>
@@ -75,7 +77,7 @@ const Card = ({ list }) => {
         <AddCards>
           <AddBtn
             onClick={() => {
-              setNewCard(true);
+              dispatch(newCard());
             }}
           >
             <AiOutlinePlus style={icons} />

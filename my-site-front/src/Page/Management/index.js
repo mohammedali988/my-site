@@ -43,6 +43,16 @@ const Board = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(addList(listContent));
+    setListContent({
+      id: 0,
+      title: "",
+      cards: {},
+    });
+  };
   return (
     <>
       <NavBoard></NavBoard>
@@ -55,28 +65,19 @@ const Board = () => {
           );
         })}
         {open ? (
-          <AddTitle>
-            <TextTitle
-              placeholder="Add list title"
-              onChange={handleChange}
-              value={listContent.title}
-            />
-            <Cont>
-              <Add
-                onClick={() => {
-                  dispatch(addList(listContent));
-                  setListContent({
-                    id: 0,
-                    title: "",
-                    cards: {},
-                  });
-                }}
-              >
-                Add
-              </Add>
-              <AiOutlineClose onClick={handleOpen} style={CloseIco} />
-            </Cont>
-          </AddTitle>
+          <form onSubmit={handleSubmit}>
+            <AddTitle>
+              <TextTitle
+                placeholder="Add list title"
+                onChange={handleChange}
+                value={listContent.title}
+              />
+              <Cont>
+                <Add type="submit">Add</Add>
+                <AiOutlineClose onClick={handleOpen} style={CloseIco} />
+              </Cont>
+            </AddTitle>
+          </form>
         ) : (
           <AddList onClick={handleOpen}>
             <AiOutlinePlus style={iconStyle} />

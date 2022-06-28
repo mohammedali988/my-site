@@ -3,10 +3,12 @@ import { Actions, Divider, Header, icon, Item, Items } from "./style";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteList } from "../../Redux/Lists/listSlice";
+import { newCard } from "../../Redux/Lists/createCardSlice";
 
-const ActionList = ({ id }) => {
+const ActionList = ({ id, list }) => {
   const dispatch = useDispatch();
 
+  console.log(list, "here is the list");
   return (
     <Actions>
       <Header>
@@ -15,7 +17,13 @@ const ActionList = ({ id }) => {
       </Header>
       <Divider />
       <Items>
-        <Item>Add Card..</Item>
+        <Item
+          onClick={() => {
+            dispatch(newCard);
+          }}
+        >
+          Add Card..
+        </Item>
         <Item>Copy list..</Item>
         <Item>Move list..</Item>
         <Item>Watch</Item>

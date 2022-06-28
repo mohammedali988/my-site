@@ -25,7 +25,12 @@ const ListContent = ({ list, index }) => {
             onClick={() => setOpenPopUp(true)}
           />
         </Btn>
-        <PopUp open={openPopUp} setOpenPopUp={setOpenPopUp} id={index}></PopUp>
+        <PopUp
+          open={openPopUp}
+          setOpenPopUp={setOpenPopUp}
+          id={index}
+          list={list}
+        ></PopUp>
       </Container>
       {Object.keys(cards).length ? (
         <>
