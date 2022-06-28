@@ -11,6 +11,7 @@ export const listSlice = createSlice({
     },
 
     deleteList: (state, action) => {
+      console.log(action.payload, "here is the id");
       state.splice(action.payload, 1);
     },
   },

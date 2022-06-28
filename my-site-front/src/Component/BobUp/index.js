@@ -2,12 +2,12 @@ import React from "react";
 import ActionList from "../ListAction";
 import { Wrapper } from "./style";
 
-const PopUp = ({ open, setOpenPopUp }) => {
+const PopUp = ({ open, setOpenPopUp, id }) => {
   return (
     <>
       {open && (
         <Wrapper onMouseLeave={() => setOpenPopUp(false)}>
-          <ActionList />
+          <ActionList id={id} />
         </Wrapper>
       )}
     </>

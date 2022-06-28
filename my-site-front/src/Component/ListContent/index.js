@@ -5,10 +5,9 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import Modal from "../Modal";
 import PopUp from "../BobUp";
-
 import Card from "../CreateCard";
 
-const ListContent = ({ list }) => {
+const ListContent = ({ list, index }) => {
   const [pen, setPen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openPopUp, setOpenPopUp] = useState(false);
@@ -26,7 +25,7 @@ const ListContent = ({ list }) => {
             onClick={() => setOpenPopUp(true)}
           />
         </Btn>
-        <PopUp open={openPopUp} setOpenPopUp={setOpenPopUp}></PopUp>
+        <PopUp open={openPopUp} setOpenPopUp={setOpenPopUp} id={index}></PopUp>
       </Container>
       {Object.keys(cards).length ? (
         <>

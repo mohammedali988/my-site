@@ -1,8 +1,12 @@
 import React from "react";
 import { Actions, Divider, Header, icon, Item, Items } from "./style";
 import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { deleteList } from "../../Redux/Lists/listSlice";
 
-const ActionList = () => {
+const ActionList = ({ id }) => {
+  const dispatch = useDispatch();
+
   return (
     <Actions>
       <Header>
@@ -22,7 +26,13 @@ const ActionList = () => {
         <Item>Archive all cards in this list..</Item>
       </Items>
       <Divider />
-      <Item>Archive this list</Item>
+      <Item
+        onClick={() => {
+          dispatch(deleteList(id));
+        }}
+      >
+        Archive this list
+      </Item>
     </Actions>
   );
 };

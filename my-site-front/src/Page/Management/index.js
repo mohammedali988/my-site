@@ -50,7 +50,7 @@ const Board = () => {
         {list.map((e, i) => {
           return (
             <ListWrapper key={i}>
-              <ListContent list={e} />
+              <ListContent list={e} index={i} />
             </ListWrapper>
           );
         })}
