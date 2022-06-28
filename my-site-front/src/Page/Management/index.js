@@ -27,7 +27,6 @@ const Board = () => {
     cards: { id: 8 },
   });
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState(0);
 
   const list = useSelector((state) => state.Lists);
   const dispatch = useDispatch();
@@ -51,7 +50,7 @@ const Board = () => {
         {list.map((e, i) => {
           return (
             <ListWrapper key={i}>
-              <ListContent list={e} onClick={() => setId(i)} />
+              <ListContent list={e} />
             </ListWrapper>
           );
         })}

@@ -48,14 +48,11 @@ const ListContent = ({ list }) => {
         comment: "",
       },
     };
-    console.log(e.target.value);
+
     if (e.target.value !== "") {
       setCard(cardObj);
     }
   };
-
-  console.log(cards, "here is the cards");
-  console.log(cards[0], "title");
 
   return (
     <>
@@ -73,15 +70,19 @@ const ListContent = ({ list }) => {
       {Object.keys(cards).length ? (
         <>
           {cards.map((e, i) => (
-            <Cards
-              key={i}
-              onMouseEnter={() => setPen(true)}
-              onMouseLeave={() => setPen(false)}
-              onClick={() => setOpenModal(true)}
-            >
-              <Title>{e.details.title}</Title>
-              {pen && <BsFillPencilFill style={penStyle} />}
-            </Cards>
+            <div key={i}>
+              {e.id === list.id && (
+                <Cards
+                  key={i}
+                  onMouseEnter={() => setPen(true)}
+                  onMouseLeave={() => setPen(false)}
+                  onClick={() => setOpenModal(true)}
+                >
+                  <Title>{e.details.title}</Title>
+                  {pen && <BsFillPencilFill style={penStyle} />}
+                </Cards>
+              )}
+            </div>
           ))}
         </>
       ) : null}
