@@ -4,7 +4,7 @@ export const cardSlice = createSlice({
   name: "card",
   initialState: [],
   reducers: {
-    // createCard: {},
+    createCard: () => {},
     addCard: (state, action) => {
       state.push(action.payload);
     },
