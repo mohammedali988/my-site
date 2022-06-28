@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import ListContent from "../../Component/ListContent";
 import {
@@ -17,6 +17,7 @@ import {
 import { addList } from "../../Redux/Lists/listSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
+import { closeCard } from "../../Redux/Lists/createCardSlice";
 
 const Board = () => {
   const unique_id = uuid();
@@ -27,6 +28,7 @@ const Board = () => {
     cards: { id: 8 },
   });
   const [open, setOpen] = useState(false);
+  const addCardRef = useRef();
 
   const list = useSelector((state) => state.Lists);
   const dispatch = useDispatch();
@@ -53,10 +55,17 @@ const Board = () => {
       cards: {},
     });
   };
+
+  const closeAddCard = (e) => {
+    if (addCardRef.current === e.target) {
+      dispatch(closeCard());
+    }
+  };
+
   return (
     <>
       <NavBoard></NavBoard>
-      <ContainerBoard>
+      <ContainerBoard ref={addCardRef} onClick={closeAddCard}>
         {list.map((e, i) => {
           return (
             <ListWrapper key={i}>

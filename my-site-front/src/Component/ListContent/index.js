@@ -19,11 +19,9 @@ const ListContent = ({ list, index }) => {
       <Modal open={openModal} setOpen={setOpenModal}></Modal>
       <Container>
         <Title>{list.title}</Title>
-        <Btn>
-          <BiDotsHorizontalRounded
-            style={icons}
-            onClick={() => setOpenPopUp(true)}
-          />
+
+        <Btn onClick={() => setOpenPopUp(true)}>
+          <BiDotsHorizontalRounded style={icons} />
         </Btn>
         <PopUp
           open={openPopUp}
@@ -51,7 +49,7 @@ const ListContent = ({ list, index }) => {
           ))}
         </>
       ) : null}
-      <Card list={list} />
+      <Card list={list} index={index} />
     </>
   );
 };

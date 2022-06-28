@@ -17,9 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "../../Redux/Lists/cardSlice";
 
 import { v4 as uuid } from "uuid";
-import { newCard } from "../../Redux/Lists/createCardSlice";
+import { closeCard, newCard } from "../../Redux/Lists/createCardSlice";
 
-const Card = ({ list }) => {
+const Card = ({ list, index }) => {
   const dispatch = useDispatch();
 
   const [card, setCard] = useState({
@@ -54,7 +54,7 @@ const Card = ({ list }) => {
 
   return (
     <>
-      {openCard ? (
+      {openCard.open && openCard.id === list.id ? (
         <>
           <form onSubmit={handleSubmit}>
             <CardsDetail>
@@ -67,7 +67,7 @@ const Card = ({ list }) => {
                 <Add type="submit"> Add </Add>
                 <AiOutlineClose
                   style={closed}
-                  onClick={() => dispatch(newCard())}
+                  onClick={() => dispatch(closeCard())}
                 />
               </CardAction>
             </CardsDetail>
@@ -77,7 +77,7 @@ const Card = ({ list }) => {
         <AddCards>
           <AddBtn
             onClick={() => {
-              dispatch(newCard());
+              dispatch(newCard(list.id));
             }}
           >
             <AiOutlinePlus style={icons} />

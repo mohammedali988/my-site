@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { sideBarData } from "./data";
 import Menu from "./sideBarList";
-import { Avatar, NameDiv, NameSpan, SideBarNav, SideBarWrap } from "./style";
+import { Avatar, NameDiv, NameSpan, SideBarWrap } from "./style";
 
 const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0);

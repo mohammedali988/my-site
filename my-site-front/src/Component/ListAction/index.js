@@ -19,7 +19,7 @@ const ActionList = ({ id, list }) => {
       <Items>
         <Item
           onClick={() => {
-            dispatch(newCard);
+            dispatch(newCard(list.id));
           }}
         >
           Add Card..
