@@ -22,9 +22,24 @@ export const cardSlice = createSlice({
         return e.id !== action.payload;
       });
     },
+
+    moveAllCards: (state, action) => {
+      const { from, to } = action.payload;
+      console.log("from , to", from, to);
+      state.map((e) => {
+        if (e.id === from) {
+          e.id = to;
+        }
+      });
+    },
   },
 });
 
-export const { addCard, deleteCard, deleteAllCards, deleteOneCard } =
-  cardSlice.actions;
+export const {
+  addCard,
+  deleteCard,
+  deleteAllCards,
+  deleteOneCard,
+  moveAllCards,
+} = cardSlice.actions;
 export default cardSlice.reducer;

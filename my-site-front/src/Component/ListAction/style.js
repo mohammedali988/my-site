@@ -11,7 +11,6 @@ export const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  //   align-items: center;
 `;
 
 export const HeadTitle = styled.span``;
@@ -19,6 +18,12 @@ export const HeadTitle = styled.span``;
 export const icon = {
   position: "absolute",
   right: "1.2rem",
+  top: "1rem",
+};
+
+export const arrowIcon = {
+  position: "absolute",
+  left: "1.2rem",
   top: "1rem",
 };
 
@@ -44,4 +49,8 @@ export const Item = styled.li`
   &: hover {
     background-color: rgba(145, 158, 171, 0.12);
   }
+`;
+
+export const CurrentStyle = styled.span`
+  color: #b3b3ff;
 `;
