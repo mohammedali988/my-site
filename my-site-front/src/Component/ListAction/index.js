@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteList } from "../../Redux/Lists/listSlice";
 import { newCard } from "../../Redux/Lists/createCardSlice";
+import { deleteAllCards } from "../../Redux/Lists/cardSlice";
 
 const ActionList = ({ id, list }) => {
   const dispatch = useDispatch();
@@ -31,7 +32,13 @@ const ActionList = ({ id, list }) => {
       <Divider />
       <Items>
         <Item>Move all cards in this list..</Item>
-        <Item>Archive all cards in this list..</Item>
+        <Item
+          onClick={() => {
+            dispatch(deleteAllCards(list.id));
+          }}
+        >
+          Archive all cards in this list..
+        </Item>
       </Items>
       <Divider />
       <Item
